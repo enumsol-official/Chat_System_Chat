@@ -1,11 +1,17 @@
+import JoinRoom from "./components/JoinRoom";
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h3 className="text-3xl font-bold underline">Hello</h3>
-      </header>
-    </div>
-  );
+  // const [isRoom, setIsRoom] = useState(true);
+  // const [isIndividual, setisIndividual] = useState(false);
+
+  // if (isRoom) {
+  //   return <Menu setIsRoom={setIsRoom} setisIndividual={setisIndividual} />;
+  // }
+  // if (isIndividual) {
+  //   return <Menu setIsRoom={setIsRoom} setisIndividual={setisIndividual} />;
+  // }
+
+  return <JoinRoom />;
 }
 
 export default App;
