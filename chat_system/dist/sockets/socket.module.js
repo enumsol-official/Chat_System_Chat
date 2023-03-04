@@ -6,20 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.SocketAdapter = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const chat_gateway_1 = require("./chat/chat.gateway");
-const socket_module_1 = require("./sockets/socket.module");
-let AppModule = class AppModule {
+const platform_socket_io_1 = require("@nestjs/platform-socket.io");
+let SocketAdapter = class SocketAdapter extends platform_socket_io_1.IoAdapter {
+    createIOServer(port, options) {
+        const server = super.createIOServer(port, Object.assign(Object.assign({}, options), { cors: {
+                origin: 'http://localhost:3000',
+                methods: ['GET', 'POST'],
+            } }));
+        return server;
+    }
 };
-AppModule = __decorate([
-    (0, common_1.Module)({
-        imports: [],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService, chat_gateway_1.ChatGateway, socket_module_1.SocketAdapter],
-    })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+SocketAdapter = __decorate([
+    (0, common_1.Module)({})
+], SocketAdapter);
+exports.SocketAdapter = SocketAdapter;
+//# sourceMappingURL=socket.module.js.map
