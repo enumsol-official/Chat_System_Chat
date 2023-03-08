@@ -10,15 +10,27 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const chat_gateway_1 = require("./chat/chat.gateway");
-const socket_module_1 = require("./sockets/socket.module");
+const typeorm_1 = require("@nestjs/typeorm");
+const users_module_1 = require("./users/users.module");
+const user_controller_1 = require("./users/user.controller");
+const userModel_1 = require("./models/userModel");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService, chat_gateway_1.ChatGateway, socket_module_1.SocketAdapter],
+        imports: [
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'mongodb',
+                host: 'localhost',
+                database: 'chat_system',
+                synchronize: true,
+                useUnifiedTopology: true,
+                entities: [userModel_1.User],
+            }),
+            users_module_1.UserModule,
+        ],
+        controllers: [app_controller_1.AppController, user_controller_1.UserController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
 exports.AppModule = AppModule;

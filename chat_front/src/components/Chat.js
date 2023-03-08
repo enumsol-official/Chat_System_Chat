@@ -32,9 +32,16 @@ function Chat({ socket, username, room }) {
 
   return (
     <div className="h-2/3 lg:w-2/4 sm:w-2/4 mx-auto my-auto bg-white rounded-xl shadow-lg">
-      <div className="h-12 px-10 rounded-md bg-black relative cursor-pointer">
-        <p className="block  py-2 text-white leading-10">Live Chat</p>
+      <div className="h-12 px-10 rounded-md bg-black relative cursor-pointer flex justify-between">
+        <p className="block  py-2 text-white leading-10">Chat Room</p>
+        <button
+          className="  outline-none bg-white text-black font-bold text-xl rounded-lg px-3 m-1"
+          onClick={leaveRoom}
+        >
+          Leave
+        </button>
       </div>
+
       <div className="h-5/6 border  border-black bg-white relative">
         <ScrollToBottom className="h-full w-full overflow-y-scroll overflow-x-hidden snap-none">
           {messageList.map((messageContent) => {

@@ -6,20 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SocketAdapter = void 0;
+exports.UserModule = void 0;
 const common_1 = require("@nestjs/common");
-const platform_socket_io_1 = require("@nestjs/platform-socket.io");
-let SocketAdapter = class SocketAdapter extends platform_socket_io_1.IoAdapter {
-    createIOServer(port, options) {
-        const server = super.createIOServer(port, Object.assign(Object.assign({}, options), { cors: {
-                origin: 'http://localhost:3000',
-                methods: ['GET', 'POST'],
-            } }));
-        return server;
-    }
+const typeorm_1 = require("@nestjs/typeorm");
+const userModel_1 = require("../models/userModel");
+const users_service_1 = require("./users.service");
+let UserModule = class UserModule {
 };
-SocketAdapter = __decorate([
-    (0, common_1.Module)({})
-], SocketAdapter);
-exports.SocketAdapter = SocketAdapter;
-//# sourceMappingURL=socket.module.js.map
+UserModule = __decorate([
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([userModel_1.User])],
+        providers: [users_service_1.UserService],
+        exports: [users_service_1.UserService],
+    })
+], UserModule);
+exports.UserModule = UserModule;
+//# sourceMappingURL=users.module.js.map
