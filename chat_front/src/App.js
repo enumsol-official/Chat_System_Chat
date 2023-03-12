@@ -1,17 +1,16 @@
-import JoinRoom from "./components/JoinRoom";
+import { Routes, Route } from "react-router-dom";
+import Chats from "./components/Chats";
+import HomePage from "./components/HomePage";
 
 function App() {
-  // const [isRoom, setIsRoom] = useState(true);
-  // const [isIndividual, setisIndividual] = useState(false);
-
-  // if (isRoom) {
-  //   return <Menu setIsRoom={setIsRoom} setisIndividual={setisIndividual} />;
-  // }
-  // if (isIndividual) {
-  //   return <Menu setIsRoom={setIsRoom} setisIndividual={setisIndividual} />;
-  // }
-
-  return <JoinRoom />;
+  return (
+    <div className="">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/chats" exact element={<Chats />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
